@@ -1,9 +1,13 @@
 package com.survivingcodingbootcamp.blog.model;
 
+import org.hibernate.mapping.Array;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
@@ -12,14 +16,16 @@ public class Topic {
     @GeneratedValue
     private Long id;
     private String name;
+
     @OneToMany(mappedBy = "topic")
     private Collection<Post> posts;
 
     protected Topic() {
     }
 
-    public Topic(String name) {
+    public Topic(String name, Post...posts) {
         this.name = name;
+        this.posts = Arrays.asList(posts);
     }
 
     public Long getId() {
