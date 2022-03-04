@@ -11,6 +11,11 @@
 </head>
 
 <body>
+
+<nav class="header__nav">
+    <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
+    <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
+</nav>
     <div class="container">
         <header class="header">
             <h1 class="header__title">Surviving Coding Boot Camp</h1>
@@ -27,10 +32,22 @@
                 <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut. 
                     Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
                 </p>
+                <h2>Tags:</h2>
+                <div class="hashContainer" th:each = "hashtag: ${post.hashtags}">
+                    <a th:text= "${hashtag.hashTagM}" th:href="'/hashtag/'+${hashtag.id}">Hashtags</a>
+                </div>
+            </section>
+            <section>
+                <form class = "formContainer2" action= "hashtag"  th:action="'/post/' + ${post.id} + '/addHashtag'"  method="POST">
+                    <h2>Submit #Hashtag</h2>
+                    <textarea class = "inputBorder" id="hashtag" name="hashtag" placeholder="Leave a #hashtag..." maxlength = "30" size = "50"></textarea>
+                    <input class = "submitBorder" value="Submit Hashtag" type="submit">
+                </form>
             </section>
         </main>
     </div>
-
 </body>
+
+
 
 </html>
